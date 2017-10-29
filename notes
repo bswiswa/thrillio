@@ -29,3 +29,15 @@ asses will be useful when we have to check if a field has a particular value.
 
 #Implementing Data store
 Creating our "database" in a data store (a class called DataStore)
+
+#Implementing Data Access Objects (DAOs)
+Code that fetches data from database or other data stores. In our case, since we do not have a database, our methods will be calling on the getter methods in the DataStore class
+In Model-View-Controller architecture, controllers will invoke managers and managers will invoke data access objects. 
+This was implemented by:
+ 1. creating unique DAOs for the two types of classes in our system -> Users & Bookmarks (a UserDao and a BookmarkDao). 
+ 	- These DAO classes will contain methods for interacting with the data layer
+ 	- inside these DAOs, we add getter methods for the types of objects they request. eg in UserDao, we have a getUsers() method
+ 2. adding getter methods inside the DAOs
+ 3. now that the DAOs are set, we now look at updating our managers. 
+ The controller will in the future be requesting data through the managers so lets make methods in managers for handling such requests.
+  create methods in our managers for interacting with the DAOs.

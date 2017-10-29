@@ -23,7 +23,8 @@ public class DataStore {
 	// we have 5 users and each of them can make a maximum of 5 bookmarks
 	private static UserBookmark[] userBookmarks = new UserBookmark[MAX_USERS * MAX_BOOKMARKS_PER_USER];
 
-		// getters for users and bookmarks
+	// getters for users and bookmarks to be called on by Data Access Objects since
+	// we have no database
 	public static User[] getUsers() {
 		return users;
 	}
@@ -75,19 +76,34 @@ public class DataStore {
 	}
 
 	private static void loadMovies() {
-		bookmarks[1][0] = BookmarkManager.getInstance().createMovie(3000,"Citizen Kane", "-",1941, new String[]{ "Orson Welles","Joseph Cotten"},new String[]{"Orson Welles"},MovieGenre.CLASSICS, 8.5);
-		bookmarks[1][1] = BookmarkManager.getInstance().createMovie(3001,"The Grapes of Wrath", "-",1940, new String[]{ "Henry Fonda","Jane Darwell"},new String[]{"John Ford"}, MovieGenre.CLASSICS, 8.2);
-		bookmarks[1][2] = BookmarkManager.getInstance().createMovie(3002,"A Touch of Greatness", "-",2004, new String[]{ "Albert Cullum"},new String[]{"Leslie Sullivan"}, MovieGenre.DOCUMENTARIES, 7.3);
-		bookmarks[1][3] = BookmarkManager.getInstance().createMovie(3003,"The Big Bang Theory", "-",2007, new String[]{ "Kaley Cuoco", "Jim Parsons"},new String[]{"Chuck Lorre", "Bill Prady"}, MovieGenre.TV_SHOWS, 8.7);
-		bookmarks[1][4] = BookmarkManager.getInstance().createMovie(3004,"Ikiru", "-",1952, new String[]{ "Takashi Shimura","Minoru Chiaki"},new String[]{"Akira Kurosawa"},MovieGenre.FOREIGN_MOVIES, 8.4);
+		bookmarks[1][0] = BookmarkManager.getInstance().createMovie(3000, "Citizen Kane", "-", 1941,
+				new String[] { "Orson Welles", "Joseph Cotten" }, new String[] { "Orson Welles" }, MovieGenre.CLASSICS,
+				8.5);
+		bookmarks[1][1] = BookmarkManager.getInstance().createMovie(3001, "The Grapes of Wrath", "-", 1940,
+				new String[] { "Henry Fonda", "Jane Darwell" }, new String[] { "John Ford" }, MovieGenre.CLASSICS, 8.2);
+		bookmarks[1][2] = BookmarkManager.getInstance().createMovie(3002, "A Touch of Greatness", "-", 2004,
+				new String[] { "Albert Cullum" }, new String[] { "Leslie Sullivan" }, MovieGenre.DOCUMENTARIES, 7.3);
+		bookmarks[1][3] = BookmarkManager.getInstance().createMovie(3003, "The Big Bang Theory", "-", 2007,
+				new String[] { "Kaley Cuoco", "Jim Parsons" }, new String[] { "Chuck Lorre", "Bill Prady" },
+				MovieGenre.TV_SHOWS, 8.7);
+		bookmarks[1][4] = BookmarkManager.getInstance().createMovie(3004, "Ikiru", "-", 1952,
+				new String[] { "Takashi Shimura", "Minoru Chiaki" }, new String[] { "Akira Kurosawa" },
+				MovieGenre.FOREIGN_MOVIES, 8.4);
 	}
 
 	private static void loadBooks() {
-		bookmarks[2][0] = BookmarkManager.getInstance().createBook(4000, "Walden", "-",	1854	, "Wilder Publications", new String[] { "Henry David Thoreau"},BookGenre.PHILOSOPHY,4.3);
-		bookmarks[2][0] = BookmarkManager.getInstance().createBook(4000, "Self-Reliance and Other Essays", "-",	1993	, "Dover Publications", new String[] { "Ralph Waldo Emerson"},BookGenre.PHILOSOPHY,4.5);
-		bookmarks[2][0] = BookmarkManager.getInstance().createBook(4000, "Light From Many Lamps", "-",	1988	, "Touchstone", new String[] { "Lillian Eichler Watson"},BookGenre.PHILOSOPHY,5.0);
-		bookmarks[2][0] = BookmarkManager.getInstance().createBook(4000, "Head First Design Patterns	Technical", "-",	2004	, "O'Reilly Media", new String[] { "Eric Freeman","Bert Bates","Kathy Sierra","Elisabeth Robson"},	BookGenre.TECHNICAL,4.5);
-		bookmarks[2][0] = BookmarkManager.getInstance().createBook(4000, "Effective Java Programming Language Guide", "-",	2007	, "Prentice Hall", new String[] { "Joshua Bloch"},BookGenre.TECHNICAL,4.9);
+		bookmarks[2][0] = BookmarkManager.getInstance().createBook(4000, "Walden", "-", 1854, "Wilder Publications",
+				new String[] { "Henry David Thoreau" }, BookGenre.PHILOSOPHY, 4.3);
+		bookmarks[2][0] = BookmarkManager.getInstance().createBook(4000, "Self-Reliance and Other Essays", "-", 1993,
+				"Dover Publications", new String[] { "Ralph Waldo Emerson" }, BookGenre.PHILOSOPHY, 4.5);
+		bookmarks[2][0] = BookmarkManager.getInstance().createBook(4000, "Light From Many Lamps", "-", 1988,
+				"Touchstone", new String[] { "Lillian Eichler Watson" }, BookGenre.PHILOSOPHY, 5.0);
+		bookmarks[2][0] = BookmarkManager.getInstance().createBook(4000, "Head First Design Patterns	Technical", "-",
+				2004, "O'Reilly Media",
+				new String[] { "Eric Freeman", "Bert Bates", "Kathy Sierra", "Elisabeth Robson" }, BookGenre.TECHNICAL,
+				4.5);
+		bookmarks[2][0] = BookmarkManager.getInstance().createBook(4000, "Effective Java Programming Language Guide",
+				"-", 2007, "Prentice Hall", new String[] { "Joshua Bloch" }, BookGenre.TECHNICAL, 4.9);
 	}
 
 }

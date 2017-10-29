@@ -1,9 +1,12 @@
 package com.semanticsquare.thrillio.managers;
 
+import com.semanticsquare.thrillio.dao.UserDao;
 import com.semanticsquare.thrillio.entities.User;
 
 public class UserManager {
 	private static UserManager instance = new UserManager();
+	// since this is UserManager we need to create an instance of UserDao
+	private static UserDao dao = new UserDao();
 
 	private UserManager() {
 	}
@@ -30,5 +33,11 @@ public class UserManager {
 		user.setUserType(userType);
 
 		return user;
+	}
+
+	public User[] getUsers() {
+		// recall that in MVC architecture, the controller does not interact with data
+		// access objects directly so it goes through the managers
+		return dao.getUsers();
 	}
 }
