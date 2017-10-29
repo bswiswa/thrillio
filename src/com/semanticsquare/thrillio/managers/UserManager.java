@@ -8,8 +8,7 @@ public class UserManager {
 	// since this is UserManager we need to create an instance of UserDao
 	private static UserDao dao = new UserDao();
 
-	private UserManager() {
-	}
+	private UserManager() {}
 	// private constructor because we do not want clients to create managers. Only
 	// one object needed
 	// for a Singleton. So object has to be created in this class.

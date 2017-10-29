@@ -11,8 +11,7 @@ public class BookmarkManager {
 	private static BookmarkManager instance = new BookmarkManager();
 	private static BookmarkDao dao = new BookmarkDao();
 
-	private BookmarkManager() {
-	}
+	private BookmarkManager() {}
 
 	public static BookmarkManager getInstance() {
 		return instance;

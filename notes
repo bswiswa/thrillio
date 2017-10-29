@@ -41,3 +41,14 @@ This was implemented by:
  3. now that the DAOs are set, we now look at updating our managers. 
  The controller will in the future be requesting data through the managers so lets make methods in managers for handling such requests.
   create methods in our managers for interacting with the DAOs.
+  
+  # Project Status And Launching
+  So far we have implemented the model and the datastore. We are yet to implement the view and the controller. 
+  To launch our application, we need to write a separate program that would:
+  1. load our data - all our entities -> users & bookmarks
+  2. invoke the different steps in the controller and view.
+  
+  Now we focus on writing our launcher program and use it to load the data and see if everything we have written is working so far.
+  Since this program is a launcher, it must have the main() method which is the entry point for running the program.
+  The Launcher class will run scripts to load the data store then print out the contents to the console. In printing the objects,
+  there is an easy way to overide the inherited toString() method using Eclipse: Source->Generate toString...
