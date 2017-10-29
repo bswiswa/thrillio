@@ -4,6 +4,8 @@ import com.semanticsquare.thrillio.dao.BookmarkDao;
 import com.semanticsquare.thrillio.entities.Book;
 import com.semanticsquare.thrillio.entities.Bookmark;
 import com.semanticsquare.thrillio.entities.Movie;
+import com.semanticsquare.thrillio.entities.User;
+import com.semanticsquare.thrillio.entities.UserBookmark;
 import com.semanticsquare.thrillio.entities.WebLink;
 
 public class BookmarkManager {
@@ -60,5 +62,13 @@ public class BookmarkManager {
 	
 	public Bookmark[][] getBookmarks(){
 		return dao.getBookmarks();
+	}
+
+	public void saveUserBookmark(User user, Bookmark bookmark) {
+		UserBookmark userBookmark = new UserBookmark();
+		userBookmark.setUser(user);
+		userBookmark.setBookmark(bookmark);
+		
+		dao.saveUserBookmark(userBookmark);
 	}
 }

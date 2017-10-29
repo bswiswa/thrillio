@@ -11,10 +11,10 @@ import com.semanticsquare.thrillio.managers.BookmarkManager;
 import com.semanticsquare.thrillio.managers.UserManager;
 
 public class DataStore {
-	private static final int MAX_BOOKMARKS_PER_USER = 5;
-	private static final int BOOKMARK_TYPE_NUMBER = 3;
-	private static final int MAX_USERS = 5;
-	private static final int MAX_NUMBER_PER_BOOKMARK_TYPE = 5;
+	public static final int MAX_BOOKMARKS_PER_USER = 5;
+	public static final int BOOKMARK_TYPE_NUMBER = 3;
+	public static final int MAX_USERS = 5;
+	public static final int MAX_NUMBER_PER_BOOKMARK_TYPE = 5;
 	// all our possible users
 	private static User[] users = new User[MAX_USERS];
 	// all our possible bookmarks
@@ -22,6 +22,9 @@ public class DataStore {
 	// also creating a store for the bookmarks that users make
 	// we have 5 users and each of them can make a maximum of 5 bookmarks
 	private static UserBookmark[] userBookmarks = new UserBookmark[MAX_USERS * MAX_BOOKMARKS_PER_USER];
+	private static int bookmarkIndex;
+//	bookmarkIndex keeps track of where we are in the userBookmarks array
+
 
 	// getters for users and bookmarks to be called on by Data Access Objects since
 	// we have no database
@@ -104,6 +107,12 @@ public class DataStore {
 				4.5);
 		bookmarks[2][4] = BookmarkManager.getInstance().createBook(4004, "Effective Java Programming Language Guide",
 				"-", 2007, "Prentice Hall", new String[] { "Joshua Bloch" }, BookGenre.TECHNICAL, 4.9);
+	}
+
+	public static void add(UserBookmark userBookmark) {
+		userBookmarks[bookmarkIndex] = userBookmark;
+		bookmarkIndex++;
+		
 	}
 
 }

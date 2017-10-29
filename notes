@@ -52,3 +52,8 @@ This was implemented by:
   Since this program is a launcher, it must have the main() method which is the entry point for running the program.
   The Launcher class will run scripts to load the data store then print out the contents to the console. In printing the objects,
   there is an easy way to overide the inherited toString() method using Eclipse: Source->Generate toString...
+  
+  #Implementing the User Bookmarking Feature
+  Simulate the user bookmarking process. Each user will be associated with 5 random bookmarks(duplicates included for now)
+  1. create new class View to mimick UI actions taken by a user in a real application
+  2. Methods in this class will be invoked from the Launch class
