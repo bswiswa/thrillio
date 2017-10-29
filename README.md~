@@ -1,4 +1,7 @@
-Thrill.io is a social bookmarking web application created from Udemy course: Java In-Depth by Dheeru Mundluru
+# Thrill.io
+
+Thrill.io is a social bookmarking web application created from Udemy course: Java In-Depth by Dheeru Mundluru. It is meant to introduce Java OOP concepts and
+MVC concepts.
 
 It has 4 types of users: User, EmailAdmin, Editor and ChiefEditor
 These users can bookmark and share 3 kinds of media: Books, Movies and Web links
@@ -18,6 +21,12 @@ Editor          : saveWebLink(), saveMovie(), saveBook(), rateBookmark(),
 ChiefEditor     : saveWebLink(), saveMovie(), saveBook(), rateBookmark(),
                           postAReview()[no approval], approveReview(),
                           rejectReview(), updateHomepage()
- 
-This project was developed using the Eclipse IDE. 
-Start date 10/29/17 07:39
+
+## Getting Started
+
+Install Eclipse IDE
+git clone https://github.com/bswiswa/thrillio.git
+
+## Acknowledgments
+
+* Dheeru Mundluru
