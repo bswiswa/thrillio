@@ -22,3 +22,5 @@ One we get the instance, we can run all non-static methods inherited from interf
 
 #Constant exporting classes
 * These are classes that exist only for defining constants eg fields like genre or gender have a range of values. The same is true for the userType field. The constant exporting classes will be useful when we have to check if a field has a particular value.
+
+#Implementing Data store
