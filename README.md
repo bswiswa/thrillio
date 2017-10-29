@@ -9,17 +9,17 @@ These users can bookmark and share 3 kinds of media: Books, Movies and Web links
 
 User functions:
 
-User            : saveWebLink(), saveMovie(), saveBook(), rateBookmark(),
+**User**            : saveWebLink(), saveMovie(), saveBook(), rateBookmark(),
                         postAReview()[needs approval]
 
-EmailAdmin      : saveWebLink(), saveMovie(), saveBook(), rateBookmark(),
+**EmailAdmin**      : saveWebLink(), saveMovie(), saveBook(), rateBookmark(),
                           postAReview()[no approval], handleEmailCampaign()
 
-Editor          : saveWebLink(), saveMovie(), saveBook(), rateBookmark(),
+**Editor**          : saveWebLink(), saveMovie(), saveBook(), rateBookmark(),
                           postAReview()[no approval], approveReview(),
                           rejectReview()
 
-ChiefEditor     : saveWebLink(), saveMovie(), saveBook(), rateBookmark(),
+**ChiefEditor**     : saveWebLink(), saveMovie(), saveBook(), rateBookmark(),
                           postAReview()[no approval], approveReview(),
                           rejectReview(), updateHomepage()
 
