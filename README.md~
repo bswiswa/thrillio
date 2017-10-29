@@ -25,8 +25,11 @@ ChiefEditor     : saveWebLink(), saveMovie(), saveBook(), rateBookmark(),
 ## Getting Started
 
 Install Eclipse IDE
+
+```
 git clone https://github.com/bswiswa/thrillio.git
 
+```
 ## Acknowledgments
 
 * Dheeru Mundluru
