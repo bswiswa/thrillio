@@ -57,3 +57,28 @@ This was implemented by:
   Simulate the user bookmarking process. Each user will be associated with 5 random bookmarks(duplicates included for now)
   1. create new class View to mimick UI actions taken by a user in a real application
   2. Methods in this class will be invoked from the Launch class
+  
+  #Implementing a feature using TDD
+  Here we are implementing the kid friendly() eligible feature. Thrill.io would like to have a separate tab on the homepage just for kids. 
+  So on this page we would only like to have kid-friendly content. Only Editors can mark eligible bookmarks as kid-friendly.
+  For now here are the rules for our method:
+   - if a Movie is of the genre "Horror" or "Thriller", it should return false
+   - if a Book is of the genre "Philosophy" or "Self help", it should return false
+   - Should return false if website is an "Adult" site
+   
+   We will follow Test-driven Development:
+   Add a Test -> Update Code to pass test -> Refactor and Repeat tests
+   Benefits of TDD:
+   - ensures program correctness at all points of time
+   - improves programmer's confidence
+   - can also help you to better design your methods as TDD forces you to think through test scenarios that your application could encounter
+   - in our application, we create a test folder/ on the same level as our source folder src/. Inside our test/ folder, we make an identical package, with an identical name to the one we want to test.
+   - inside of the package we make our JUnit test cases:
+   1. Select the package
+   2. Right click and select New -> JUnit Test Case
+   3. Put in the name of the test - convention is that if you are testing the Book class, the test case should be called BookTest
+   4. Specify the Class Under Test
+   5. Click Next then select the methods you would like to write tests for
+   6. Click Finish (if you get a popoup about adding JUnit to the path, click Ok)
+   7. Inside your test class, import import static org.junit.Assert.* (Eclipse can do this for you)
+   8. Write your test cases using the assertTrue(logical expression, "Statement to print if it logical expression is FALSE"), or assertFalse(logical expression, "Statement to print if expression is TRUE")

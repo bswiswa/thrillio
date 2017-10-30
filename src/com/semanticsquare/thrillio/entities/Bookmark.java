@@ -1,7 +1,7 @@
 // TODO make this into an abstract class
 package com.semanticsquare.thrillio.entities;
 
-public class Bookmark {
+public abstract class Bookmark {
 	private long id;
 	private String title;
 	private String profileUrl;
@@ -29,4 +29,6 @@ public class Bookmark {
 	public void setProfileUrl(String profileUrl) {
 		this.profileUrl = profileUrl;
 	}
+	
+	public abstract boolean isKidFriendlyEligible();
 }

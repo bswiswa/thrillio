@@ -54,4 +54,15 @@ public class Book extends Bookmark {
 		return "Book [publicationYear=" + publicationYear + ", publisher=" + publisher + ", authors="
 				+ Arrays.toString(authors) + ", genre=" + genre + ", amazonRating=" + amazonRating + "]";
 	}
+
+	@Override
+	public boolean isKidFriendlyEligible() {
+		if(this.getTitle().toLowerCase().contains("porn")) return false;
+		if(publisher.toLowerCase().contains("porn")) return false;
+		if(genre.toLowerCase().contains("porn")) return false;
+		if(genre.toLowerCase().contains("adult")) return false;
+		if(genre.toLowerCase().contains("philosophy")) return false;
+		if(genre.toLowerCase().contains("self help")) return false;
+		return true;
+	}
 }
