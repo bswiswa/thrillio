@@ -87,7 +87,7 @@ This was implemented by:
    - A new field was added to the Bookmark class called kidFriendlyStatus to indicate whether a bookmark has been "approved", "rejected" or is "unknown" by an editor.
    Given that we have a fixed range of values for kidFriendlyStatus, it is a good idea to implement a constant exporting class for those values so that in the future, if we need to change anything, we just change it in the constant exporting class. 
    
-   #Implementing Sharing (with constraints)
+   #Using an Interface & implementing the Sharing feature (with constraints)
  - we want to share kid-friendly bookmarks with partner websites. The constraint being that only books or weblinks can be shared.
  - so we are implementing optional capabilities to select classes.
  - we will be creating XML strings that will be shared with the partner. 
@@ -102,4 +102,7 @@ This was implemented by:
   5. Select Properties -> Java Build Path
   6. Click on the Libraries tab and click Add External JARs
   7. Select your JAR file and click Apply and Close
+  
+  #Implementing Sharing feature part 2
+  
   

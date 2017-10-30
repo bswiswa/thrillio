@@ -73,4 +73,23 @@ public class BookmarkManager {
 		dao.saveUserBookmark(userBookmark);
 	}
 
+	public void setKidFriendlyStatus(User user, String kidFriendlyChoice, Bookmark bookmark) {
+		bookmark.setKidFriendlyStatus(kidFriendlyChoice);
+		bookmark.setKidFriendlyMarkedBy(user);
+		System.out.println("Kid friendly status: "+ kidFriendlyChoice + ", Marked by: "+ user.getEmail() + ", "+ bookmark);
+	}
+
+	public static void share(User user, Bookmark bookmark) {
+		bookmark.setSharedBy(user);
+		System.out.println("Data to be shared: ");
+		//we need to do downcasting so that we can use the proper getItemData() function
+		if(bookmark instanceof Book) {
+			System.out.println(((Book)bookmark).getItemData());	
+		}
+		else if(bookmark instanceof WebLink) {
+			System.out.println(((WebLink)bookmark).getItemData());	
+		}
+		
+	}
+
 }

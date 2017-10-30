@@ -5,6 +5,7 @@ import com.semanticsquare.thrillio.constants.UserType;
 import com.semanticsquare.thrillio.controllers.BookmarkController;
 import com.semanticsquare.thrillio.entities.Bookmark;
 import com.semanticsquare.thrillio.entities.User;
+import com.semanticsquare.thrillio.partner.Shareable;
 
 public class View {
 	// public static void bookmark(User user, Bookmark[][] bookmarks) {
@@ -39,16 +40,28 @@ public class View {
 				}
 				String userType = user.getUserType();
 				if(userType.toLowerCase().equals(UserType.CHIEF_EDITOR)  || userType.toLowerCase().equals(UserType.EDITOR)) {
+					//Mark as kid friendly
 					if(bookmark.isKidFriendlyEligible() && bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.UNKNOWN)) {	
-						if(bookmark.getKidFriendlyStatus().equals("unknown")) {
-								String kidFriendlyChoice = getKidFriendlyDecision();
-								bookmark.setKidFriendlyStatus(kidFriendlyChoice);
-								System.out.println("Kid friendly status: "+ kidFriendlyChoice + ", "+ bookmark);
+						if(bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.UNKNOWN)) {	
+							String kidFriendlyChoice = getKidFriendlyDecision();
+							BookmarkController.getInstance().setKidFriendlyStatus(user, kidFriendlyChoice, bookmark);
 							}
+					}
+//				Sharing possible if Editor and kidFriendlyStatus has to be approved. AND SHOULD BE BOOK OR WEBLINK ONLY
+					if(bookmark.isKidFriendlyEligible() && bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.APPROVED) && bookmark instanceof Shareable) {
+						boolean isShared = getShareDecision();
+						if(isShared) {
+							//share with third party
+							BookmarkController.getInstance().share(user, bookmark);
+						}
 					}
 				}
 			}
 		}
+	}
+//	TODO: Below methods simulate user input. After IO, we take input via console
+	private static boolean getShareDecision() {
+		return Math.random() > 0.5? true: false;	
 	}
 
 	private static boolean getBookMarkDecision(Bookmark bookmark) {

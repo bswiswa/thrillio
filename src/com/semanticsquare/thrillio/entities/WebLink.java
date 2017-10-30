@@ -1,6 +1,8 @@
 package com.semanticsquare.thrillio.entities;
 
-public class WebLink extends Bookmark{
+import com.semanticsquare.thrillio.partner.Shareable;
+
+public class WebLink extends Bookmark implements Shareable{
 	private String url;
 	private String host;
 
@@ -22,7 +24,6 @@ public class WebLink extends Bookmark{
 
 	@Override
 	public boolean isKidFriendlyEligible() {
-		// TODO Auto-generated method stub
 		if(url.toLowerCase().contains("porn")) return false;
 		if(this.getTitle().toLowerCase().contains("porn")) return false;
 		if(host.toLowerCase().contains("adult")) return false;
