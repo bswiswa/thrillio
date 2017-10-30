@@ -86,3 +86,20 @@ This was implemented by:
    # Implementing the approval status of KidFriendlyEligible bookmarks
    - A new field was added to the Bookmark class called kidFriendlyStatus to indicate whether a bookmark has been "approved", "rejected" or is "unknown" by an editor.
    Given that we have a fixed range of values for kidFriendlyStatus, it is a good idea to implement a constant exporting class for those values so that in the future, if we need to change anything, we just change it in the constant exporting class. 
+   
+   #Implementing Sharing (with constraints)
+ - we want to share kid-friendly bookmarks with partner websites. The constraint being that only books or weblinks can be shared.
+ - so we are implementing optional capabilities to select classes.
+ - we will be creating XML strings that will be shared with the partner. 
+ - since our objects have many fields, we will want to build Strings piece by piece as we join the XML. We know that String concatenation is expensive and slow (due to inherent switching between Strings and StringBuilder instances) so we will use StringBuilder off the bat.
+  and finally return a String object once concatenation is complete. StringBuilder has the advantage of offering mutable StringBuilder objects. An alternative is StringBuffer but it is slower.
+  - we also used an external package from the Apache Commons Lang [StringUtils class' join function]
+  - getting external excecutable JARs:
+  1. Go to the website or source and download the Binaries.
+  2. Open them and go into the folder and find the necessary .jar file
+  3. Copy this JAR file into a folder where you keep all useful JAR files
+  4. Go to your application in Eclipse and right-click on it
+  5. Select Properties -> Java Build Path
+  6. Click on the Libraries tab and click Add External JARs
+  7. Select your JAR file and click Apply and Close
+  
