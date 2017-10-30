@@ -5,13 +5,17 @@ import com.semanticsquare.thrillio.entities.User;
 import com.semanticsquare.thrillio.managers.BookmarkManager;
 
 public class BookmarkController {
-//also a Singleton
+	// also a Singleton
 	private static BookmarkController instance = new BookmarkController();
-	private BookmarkController() {}
+
+	private BookmarkController() {
+	}
+
 	public static BookmarkController getInstance() {
 		return instance;
 	}
+
 	public void saveUserBookmark(User user, Bookmark bookmark) {
-		BookmarkManager.getInstance().saveUserBookmark(user, bookmark);	
+		BookmarkManager.getInstance().saveUserBookmark(user, bookmark);
 	}
 }

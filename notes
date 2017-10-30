@@ -82,3 +82,7 @@ This was implemented by:
    6. Click Finish (if you get a popoup about adding JUnit to the path, click Ok)
    7. Inside your test class, import import static org.junit.Assert.* (Eclipse can do this for you)
    8. Write your test cases using the assertTrue(logical expression, "Statement to print if it logical expression is FALSE"), or assertFalse(logical expression, "Statement to print if expression is TRUE")
+   
+   # Implementing the approval status of KidFriendlyEligible bookmarks
+   - A new field was added to the Bookmark class called kidFriendlyStatus to indicate whether a bookmark has been "approved", "rejected" or is "unknown" by an editor.
+   Given that we have a fixed range of values for kidFriendlyStatus, it is a good idea to implement a constant exporting class for those values so that in the future, if we need to change anything, we just change it in the constant exporting class. 

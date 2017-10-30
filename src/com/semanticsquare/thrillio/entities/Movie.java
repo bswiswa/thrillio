@@ -50,15 +50,15 @@ public class Movie extends Bookmark {
 	}
 
 	@Override
-	public String toString() {
-		return "Movie [releaseYear=" + releaseYear + ", cast=" + Arrays.toString(cast) + ", directors="
-				+ Arrays.toString(directors) + ", genre=" + genre + ", imdbRating=" + imdbRating + "]";
-	}
-
-	@Override
 	public boolean isKidFriendlyEligible() {
 		if(genre.toLowerCase().contains("horror")) return false;
 		if(genre.toLowerCase().contains("thriller")) return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Movie [releaseYear=" + releaseYear + ", cast=" + Arrays.toString(cast) + ", directors="
+				+ Arrays.toString(directors) + ", genre=" + genre + ", imdbRating=" + imdbRating +"]";
 	}
 }

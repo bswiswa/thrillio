@@ -13,7 +13,8 @@ public class BookmarkManager {
 	private static BookmarkManager instance = new BookmarkManager();
 	private static BookmarkDao dao = new BookmarkDao();
 
-	private BookmarkManager() {}
+	private BookmarkManager() {
+	}
 
 	public static BookmarkManager getInstance() {
 		return instance;
@@ -45,10 +46,10 @@ public class BookmarkManager {
 		book.setAuthors(authors);
 		book.setGenre(genre);
 		book.setAmazonRating(amazonRating);
-		
+
 		return book;
 	}
-	
+
 	public WebLink createWebLink(long id, String title, String profileUrl, String url, String host) {
 		WebLink weblink = new WebLink();
 		weblink.setId(id);
@@ -56,11 +57,11 @@ public class BookmarkManager {
 		weblink.setProfileUrl(profileUrl);
 		weblink.setUrl(url);
 		weblink.setHost(host);
-		
+
 		return weblink;
 	}
-	
-	public Bookmark[][] getBookmarks(){
+
+	public Bookmark[][] getBookmarks() {
 		return dao.getBookmarks();
 	}
 
@@ -68,7 +69,8 @@ public class BookmarkManager {
 		UserBookmark userBookmark = new UserBookmark();
 		userBookmark.setUser(user);
 		userBookmark.setBookmark(bookmark);
-		
+
 		dao.saveUserBookmark(userBookmark);
 	}
+
 }
