@@ -82,7 +82,9 @@ public class BookmarkManager {
 	public static void share(User user, Bookmark bookmark) {
 		bookmark.setSharedBy(user);
 		System.out.println("Data to be shared: ");
-		//we need to do downcasting so that we can use the proper getItemData() function
+//		we need to do downcasting so that we can use the proper getItemData() function
+//		If we do not downcast Bookmark, at compile time, the compiler will look for an implementation of the getItemData() method
+//		but since it does not exist in the Bookmark class, we will get an error
 		if(bookmark instanceof Book) {
 			System.out.println(((Book)bookmark).getItemData());	
 		}
