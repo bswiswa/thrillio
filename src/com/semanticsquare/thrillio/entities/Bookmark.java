@@ -1,8 +1,10 @@
 package com.semanticsquare.thrillio.entities;
 
+import java.io.Serializable;
+
 import com.semanticsquare.thrillio.constants.KidFriendlyStatus;
 
-public abstract class Bookmark {
+public abstract class Bookmark implements Serializable{
 	private long id;
 	private String title;
 	private String profileUrl;

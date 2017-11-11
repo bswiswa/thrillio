@@ -2,10 +2,14 @@ package com.semanticsquare.thrillio.dao;
 
 import com.semanticsquare.thrillio.entities.Bookmark;
 import com.semanticsquare.thrillio.entities.UserBookmark;
+
+import java.util.List;
+import java.util.Map;
+
 import com.semanticsquare.thrillio.DataStore;
 
 public class BookmarkDao {
-	public Bookmark[][] getBookmarks() {
+	public Map<Integer, List<Bookmark>> getBookmarks() {
 		return DataStore.getBookmarks();
 	}
 

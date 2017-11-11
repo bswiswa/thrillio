@@ -1,5 +1,8 @@
 package com.semanticsquare.thrillio;
 
+import java.util.List;
+import java.util.Map;
+
 import com.semanticsquare.thrillio.constants.KidFriendlyStatus;
 import com.semanticsquare.thrillio.constants.UserType;
 import com.semanticsquare.thrillio.controllers.BookmarkController;
@@ -8,36 +11,16 @@ import com.semanticsquare.thrillio.entities.User;
 import com.semanticsquare.thrillio.partner.Shareable;
 
 public class View {
-	// public static void bookmark(User user, Bookmark[][] bookmarks) {
-	//// we will simulate a user being presented with all the possible bookmarks on
-	//// the website and randomly selecting 5 of them
-	// System.out.println("\n" + user.getEmail() + " is bookmarking");
-	// for(int i = 0; i < DataStore.MAX_BOOKMARKS_PER_USER; i++) {
-	// int typeOffset = (int)(Math.random()*DataStore.BOOKMARK_TYPE_NUMBER);
-	// int bookmarkOffset =
-	// (int)(Math.random()*DataStore.MAX_NUMBER_PER_BOOKMARK_TYPE);
-	// Bookmark bookmark = bookmarks[typeOffset][bookmarkOffset];
-	//// send this information to a controller
-	// BookmarkController.getInstance().saveUserBookmark(user, bookmark);
-	// System.out.println(bookmark);
-	// }
-	// }
 
-	public static void browse(User user, Bookmark[][] bookmarks) {
-		// we will simulate a user being presented with all the possible bookmarks on
-		// the website and randomly selecting 5 of them
+	public static void browse(User user, Map<Integer, List<Bookmark>> bookmarks) {
 		System.out.println("\n" + user.getEmail() + " is browsing items");
-		int bookmarkCount = 0;
-		for (Bookmark[] bookmarkList : bookmarks) {
-			for (Bookmark bookmark : bookmarkList) {
-				if (bookmarkCount < DataStore.MAX_BOOKMARKS_PER_USER) {
+		for (Integer bookmarkList : bookmarks.keySet()) {
+			for (Bookmark bookmark : bookmarks.get(bookmarkList)) {
 					boolean isBookmarked = getBookMarkDecision(bookmark);
 					if (isBookmarked) {
-						bookmarkCount++;
 						BookmarkController.getInstance().saveUserBookmark(user, bookmark);
 						System.out.println("New item bookmarked..." + bookmark);
 					}
-				}
 				String userType = user.getUserType();
 				if(userType.toLowerCase().equals(UserType.CHIEF_EDITOR)  || userType.toLowerCase().equals(UserType.EDITOR)) {
 					//Mark as kid friendly

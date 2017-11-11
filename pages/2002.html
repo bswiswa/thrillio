@@ -1,0 +1,281 @@
+<!-- macro JglossHead "interface vs abstract class" 2008-07-20 --><!-- generated --><!DOCTYPE HTML><html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<title>interface vs abstract class : Java Glossary</title>
+<meta name="apple-mobile-web-app-title" content="interface vs">
+<meta name="Author" content="Roedy Green, (250) 361-9093 of Canadian Mind Products. For email see contact page.">
+<meta name="dcterms.dateCopyrighted" content="1996">
+<meta name="dcterms.rightsHolder" content="Roedy Green of Canadian Mind Products">
+<meta name="Description" content="Canadian Mind Products Java &amp; Internet Glossary : interface vs abstract class">
+<meta name="Generator" content="HTMLMacros with the Compactor">
+<meta name="google-translate-customization" content="eeafc7b4b1a680b3-d11c84c20b455a00-g63221b879b657d29-c">
+<link href="../mindprod.css" type="text/css" rel="stylesheet" media="screen">
+<link href="../mindprodh.css" type="text/css" rel="stylesheet" media="handheld">
+<link href="../jdisplay.css" type="text/css" rel="stylesheet" media="screen">
+<link href="../jdisplayh.css" type="text/css" rel="stylesheet" media="handheld">
+<link rel="home" href="../index.html">
+<link rel="icon" href="../image/icon16/jgloss.png">
+<link rel="schema.dcterms" href="http://dublincore.org/documents/2012/06/14/dcmi-terms/?v=terms#">
+<link rel="alternate" type="application/rss+xml" title="Canadian Mind Products | Java Glossary"
+href="http://mindprod.com/rss/jgloss.xml">
+</head>
+<body>
+<!-- Google Adsense ad visible -->
+<div class="googlead"><ins class="adsbygoogle"
+style="display:inline-block;width:300px;height:250px"
+data-ad-client="ca-pub-7275336356867641"
+data-ad-slot="3915217187"></ins>
+<script type="text/javascript">(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+<!-- Google translate vis -->
+<div class="googletranslate" id="google_translate_element"></div>
+<!-- title --><div class="titlejgloss" id="TOP"><h1>interface vs abstract class : Java Glossary</h1></div>
+<div class="navbar"><a class="plain" href="../index.html"><img src="../image/navigate/home.png"
+alt="home page" width="24" height="24" style="vertical-align:middle"></a>
+<a class="plain" href="jgloss.html"><img class="plain" src="../image/navigate/jgloss.png"
+alt="go to the Java Glossary Home" width="27" height="26" style="vertical-align:middle"></a>
+<a class="plain" href="../bgloss/bgloss.html"><img class="plain" src="../image/navigate/bgloss.png"
+alt="go to the Computer Buyer&rsquo;s Glossary" width="24" height="24" style="vertical-align:middle"></a>
+<a class="plain" href="i.html"><img src="../image/navigate/up.png"
+alt="up" width="21" height="22" style="vertical-align:middle"></a>
+<a class="plain" href="#BOTTOM"><img src="../image/navigate/tobottom.png"
+alt="jump to foot of page" width="22" height="22" style="vertical-align:middle"></a>
+<!-- Google Search --><a class="plain" href="https://www.google.com/search?q=interface+vs+abstract+class"><img src="../image/navigate/googlesearch.png"
+alt="Google search web for more information on this topic" width="22" height="22" style="vertical-align:middle"></a>
+<!-- Pinterest vis -->
+<a class="plain" href="https://www.pinterest.com/pin/create/button/">
+<img src="http://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_20.png" width="40" height="20" alt="Pinterest pin button"></a>
+<!-- Google +1 vis -->
+<div class="g-plusone" data-size="medium"></div></div>
+<div class="indexletters"><a href="punct.html">*</a>&ensp;<a href="0-9.html">0-9</a>&ensp;<a href="a.html">A</a>&ensp;<a href="b.html">B</a>&ensp;<a href="c.html">C</a>&ensp;<a href="d.html">D</a>&ensp;<a href="e.html">E</a>&ensp;<a href="f.html">F</a>&ensp;<a href="g.html">G</a>&ensp;<a href="h.html">H</a>&ensp;<a href="i.html">I</a>&ensp;<a href="j.html">J</a>&ensp;<a href="k.html">K</a>&ensp;<a href="l.html">L</a>&ensp;<a href="m.html">M</a>&ensp;<a href="n.html">N</a>&ensp;<a href="o.html">O</a>&ensp;<a href="p.html">P</a>&ensp;<a href="q.html">Q</a>&ensp;<a href="r.html">R</a>&ensp;<a href="s.html">S</a>&ensp;<a href="t.html">T</a>&ensp;<a href="u.html">U</a>&ensp;<a href="v.html">V</a>&ensp;<a href="w.html">W</a>&ensp;<a href="x.html">X</a>&ensp;<a href="y.html">Y</a>&ensp;<a href="z.html">Z</a>&ensp;(<a href="masterindex.html">all</a>)</div>
+<div class="navbar"><ul class="breadcrumb"><li class="firstbreadcrumb">You are here :</li>
+<li><a class="plain" href="../index.html">home</a></li>
+<li><a class="plain" href="jgloss.html">Java Glossary</a></li>
+<li><a class="plain" href="i.html">I words</a></li>
+<li><span class="term">interface vs abstract class</span></li>
+<li class="lastbreadcrumb">&nbsp;</li></ul></div>
+<div class="navbar"><span class="copyright">&copy;<span class="date">1996-2017</span> <span class="reviewed">2008-07-20</span> Roedy Green of Canadian Mind Products</span></div>
+<br style="clear:both">
+<!-- ==== H E A D ====o==== H E A D ====o==== H E A D ==== -->
+<!-- /generated by JglossHead -->
+<dl>
+<dt id="INTERFACEVSABSTRACT"><!-- macro Image icon128/balance.png "balance scales" middle --><!-- generated --><img src="../image/icon128/balance.png"
+alt="balance scales" width="111" height="128" style="vertical-align:middle"><!-- /generated by Image -->
+&nbsp;interface vs abstract class<!-- alias abstract class vs interface -->
+<!-- alias abstract vs interface --><!-- alias interface vs abstract --></dt>
+<dd>
+When should you use an <span class="k">abstract</span> class, when an
+<span class="k">interface</span>, when both? Interfaces and <span class="k">abstract</span> classes seem superficially to provide almost the same
+capability. How do you decide which to use? <!-- macro Quilt 2 asis gridmenu
+{<a class="onpage" href="#INTERFACES">When To Use Interfaces</a>}
+{<a class="onpage" href="#ABSTRACTCLASSES">When To Use Abstract classes</a>}
+{<a class="onpage" href="#BOTH">When To Use Both</a>}
+{<a class="onpage" href="#TABLE">Summary Table</a>}
+{<a class="jgloss" href="interface.html">Interface Details</a>}
+{<a class="jgloss" href="abstract.html">Abstract Details</a>}
+{<a class="tosee" href="#SEE">Links</a>} --><!-- generated --><table class="gridmenu"><caption class="hidden">menu</caption><colgroup><col span="2" style="width:50%"></colgroup>
+<tbody><tr><td><a class="onpage" href="#INTERFACES">When To Use Interfaces</a></td>
+<td><a class="jgloss" href="interface.html">Interface Details</a></td></tr>
+<tr><td><a class="onpage" href="#ABSTRACTCLASSES">When To Use Abstract classes</a></td>
+<td><a class="jgloss" href="abstract.html">Abstract Details</a></td></tr>
+<tr><td><a class="onpage" href="#BOTH">When To Use Both</a></td>
+<td><a class="tosee" href="#SEE">Links</a></td></tr>
+<tr><td><a class="onpage" href="#TABLE">Summary Table</a></td>
+<td></td></tr></tbody></table>
+<!-- /generated by Quilt -->
+<h2 id="INTERFACES">When To Use Interfaces</h2>
+An <span class="k">interface</span> allows somebody to start from scratch to implement your
+<span class="k">interface</span> or implement your <span class="k">interface</span> in some other code whose original or primary purpose was
+quite different from your <span class="k">interface</span>. To them, your
+<span class="k">interface</span> is only incidental, something that have to add
+on to the their code to be able to use your package. The disadvantage is every method
+in the interface must be <span class="k">public</span>. You might not want to
+expose everything.
+<h2 id="ABSTRACTCLASSES">When To Use Abstract classes</h2>
+An <span class="k">abstract</span> class, in contrast, provides more structure. It usually
+defines some default implementations and provides some tools useful for a full
+implementation. The catch is, code using it <strong>must</strong> use your class as
+the base. That may be highly inconvenient if the other programmers wanting to use
+your package have already developed their own class hierarchy independently. In Java,
+a class can inherit from only one base class.
+<h2 id="BOTH">When to Use Both</h2>
+You can offer the best of both worlds, an
+<span class="k">interface</span> and an <span class="k">abstract</span>
+class. Implementors can ignore your <span class="k">abstract</span> class if
+they choose. The only drawback of doing that is calling methods via their
+<span class="k">interface</span> name is slightly slower than calling them via
+their <span class="k">abstract</span> class name.
+<h2 id="TABLE">Summary Table</h2>
+<table class="standard"><caption class="hidden">interfaces vs abstract classes</caption>
+<thead><tr><th colspan="3">Interfaces vs Abstract Classes</th></tr>
+<tr><th>feature</th>
+<th>interface</th>
+<th>abstract class</th></tr></thead>
+<tbody><tr><th>multiple inheritance</th>
+<td>A class may implement several interfaces.</td>
+<td>A class may extend only one <span class="k">abstract</span>
+class.</td></tr>
+<tr><th>default implementation</th>
+<td>An <span class="k">interface</span> cannot provide any code at all,
+much less default code.</td>
+<td>An <span class="k">abstract</span> class can provide complete code,
+default code and/or just stubs that have to be overridden.</td></tr>
+<tr><th>constants</th>
+<td>Static final constants only, can use them without qualification in classes
+that implement the <span class="k">interface</span>. On the other paw,
+these unqualified names pollute the namespace. You can use them and it is not
+obvious where they are coming from since the qualification is optional.</td>
+<td>Both instance and static constants are possible. Both static and instance
+intialiser code are also possible to compute the constants.</td></tr>
+<tr><th>third party convenience</th>
+<td>An <span class="k">interface</span> implementation may be added to
+any existing third party class.</td>
+<td>A third party class must be rewritten to extend only from the <span class="k">abstract</span> class.</td></tr>
+<tr><th>is-a vs -able or can-do</th>
+<td>Interfaces are often used to describe the peripheral abilities of a class,
+not its central identity, e.g. An <span class="class">Automobile</span> class
+might implement the <span class="class">Recyclable</span> <span class="k">interface</span>, which could apply to many otherwise totally
+unrelated objects.</td>
+<td>An <span class="k">abstract</span> class defines the core identity of
+its descendants. If you defined a Dog <span class="k">abstract</span>
+class then Dalmatian descendants <strong>are</strong> Dogs, they are not
+merely dogable. Implemented interfaces enumerate the general things a class
+can do, not the things a class is.
+<p>In a Java context, users should typically implement the Runnable
+<span class="k">interface</span> rather than extending <span class="class">Thread</span> because they&rsquo;re not really interested in
+providing some new <span class="class">Thread</span> functionality, they
+normally just want some code to have the capability of running independently.
+They want to create something that can be run in a thread, not a new kind of
+thread.The similar is-a vs has-a debate comes up when you decide to inherit
+or delegate.</p>
+<div class="see"><a class="jgloss" href="multipleinheritance.html">multiple inheritance</a> for further discussion of is-a vs has-a</div></td></tr>
+<tr><th>plug-in</th>
+<td>You can write a new replacement module for an <span class="k">interface</span> that contains not one stick of code in common with
+the existing implementations. When you implement the interface, you start from
+scratch without any default implementation. You have to obtain your tools from
+other classes; nothing comes with the <span class="k">interface</span>
+other than a few constants. This gives you freedom to implement a radically
+different internal design.</td>
+<td>You must use the <span class="k">abstract</span> class as-is for the
+code base, with all its attendant baggage, good or bad. The <span class="k">abstract</span> class author has imposed structure on you. Depending
+on the cleverness of the author of the <span class="k">abstract</span>
+class, this may be good or bad.</td></tr>
+<tr><th>homogeneity</th>
+<td>If all the various implementations share is the method signatures, then an
+<span class="k">interface</span> works best.</td>
+<td>If the various implementations are all of a kind and share a common status
+and behaviour, usually an <span class="k">abstract</span> class works
+best. Another issue that&rsquo;s important is what I call <span class="quoted">heterogeneous vs. homogeneous.</span> If implementors/subclasses are
+homogeneous, tend towards an <span class="k">abstract</span> base class.
+If they are heterogeneous, use an <span class="k">interface</span>. (Now
+all I have to do is come up with a good definition of hetero/homo-geneous in
+this context.) If the various objects are all of-a-kind and share a common
+state and behavior, then tend towards a common base class. If all they share is
+a set of method signatures, then tend towards an <span class="k">interface</span>.</td></tr>
+<tr><th>maintenance</th>
+<td>If your client code talks only in terms of an <span class="k">interface</span>, you can easily change the concrete implementation
+behind it, using a <a class="jgloss" href="factorymethod.html">factory
+method</a>.</td>
+<td>Just like an <span class="k">interface</span>, if your client code
+talks only in terms of an <span class="k">abstract</span> class, you
+can easily change the concrete implementation behind it, using a <a class="jgloss" href="factorymethod.html">factory method</a>.</td></tr>
+<tr><th>speed</th>
+<td>Slow, requires extra indirection to find the corresponding method in the
+actual class. Modern <!-- macro Acronym JVMs --><!-- generated --><a class="acronymdef" href="jvm.html">JVMs</a> (<span class="means"><span class="ac">J</span>ava <span class="ac">V</span>irtual <span class="ac">M</span>achines</span>)<!-- /generated by Acronym -->
+are discovering ways to reduce this speed penalty.</td>
+<td>Fast</td></tr>
+<tr><th>terseness</th>
+<td>The constant declarations in an <span class="k">interface</span> are
+all presumed <span class="k">public static final</span>, so you may leave
+that part out. You can&rsquo;t call any methods to compute the initial values
+of your constants. You need not declare individual methods of an <span class="k">interface</span> <span class="k">abstract</span>. They are all
+presumed so.</td>
+<td>You can put shared code into an <span class="k">abstract</span>
+class, where you cannot into an <span class="k">interface</span>. If
+interfaces want to share code, you will have to write other bubblegum to
+arrange that. You may use methods to compute the initial values of your
+constants and variables, both instance and static. You must declare all the
+individual methods of an <span class="k">abstract</span> class
+<span class="k">abstract</span>.</td></tr>
+<tr><th>adding functionality</th>
+<td>If you add a new method to an <span class="k">interface</span>, you
+must track down all implementations of that <span class="k">interface</span> in the universe and provide them with a concrete
+implementation of that method.</td>
+<td>If you add a new method to an <span class="k">abstract</span> class,
+you have the option of providing a default implementation of it. Then all
+existing code will continue to work without change.</td></tr></tbody></table>
+<div class="see" id="SEE"><a class="jgloss" href="abstract.html">abstract</a><br>
+<a class="jgloss" href="abstractclass.html">abstract class</a><br>
+<a class="jgloss" href="class.html">class</a><br>
+<a class="jgloss" href="extend.html">extends</a><br>
+<a class="jgloss" href="factorymethod.html">factory method</a><br>
+<a class="jgloss" href="implements.html">implements</a><br>
+<a class="jgloss" href="interface.html">interface</a><br>
+<a class="jgloss" href="multipleinheritance.html">multiple inheritance</a></div>
+</dd>
+</dl><!-- macro Foot --><!-- generated --><!-- ==== F O O T ====o==== F O O T ====o==== F O O T ==== -->
+<hr class="foot">
+<table class="borderless"><caption class="hidden">standard footer</caption>
+<tbody><tr><td class="navigate" id="BOTTOM"><a class="plain" href="../index.html#TITLE"><img src="../image/navigate/home.png"
+alt="CMP home" width="24" height="24"></a><a class="plain" href="#TOP"><img src="../image/navigate/totop.png"
+alt="jump to top" width="22" height="22"></a></td>
+<td class="middle"><p class="alignedright"><span class="unobtrusive">This page is posted<br>on the web at:</span></p></td>
+<td class="middle"><a class="url" href="http://mindprod.com/jgloss/interfacevsabstract.html">http://mindprod.com/jgloss/interfacevsabstract.html</a></td></tr>
+<tr><td></td>
+<td class="middle"><p class="alignedright"><span class="unobtrusive">Optional Replicator mirror
+<br>
+of mindprod.com
+<br>
+on local hard disk <a class="unobtrusive" href="jdrive.html"><span class="drive">J:</span></a></span></p></td>
+<td class="middle"><a class="jdrive" href="file:///J:/mindprod/jgloss/interfacevsabstract.html">J:\mindprod\jgloss\interfacevsabstract.html</a></td></tr>
+<tr><td><a class="plain" href="../index.html#TITLE"><img src="../image/logo/cmpmartylogomid.png"
+alt="Canadian Mind Products" width="89" height="113" style="vertical-align:middle"></a></td>
+<td class="alignedmiddle" colspan="2"><div class="pleasefeedback">Please <a class="feedback" href="../feedback/feedback.html">read</a> the feedback from other visitors,
+or <a class="feedback" href="../feedback/feedback.html">send</a> your own feedback about the site.<br><a class="plain" href="../contact/contact.html">Contact Roedy</a>.
+Please feel free to link to this page without explicit permission.</div></td></tr>
+<tr><td></td>
+<td><span style="white-space:nowrap;"><span class="logo"><span class="logocaps">C</span>anadian
+<span class="logocaps">M</span>ind
+<span class="logocaps">P</span>roducts</span>
+<br>
+IP:[<span class="ip">65.110.21.43</span>]
+<br>
+Your face IP:[<span class="ip">50.255.156.190</span>]</span></td>
+<td rowspan="2"><!-- Google Adsense ad visible -->
+<div class="googleadfoot"><ins class="adsbygoogle"
+style="display:inline-block;width:728px;height:90px"
+data-ad-client="ca-pub-7275336356867641"
+data-ad-slot="5284935692"></ins>
+<script type="text/javascript">(adsbygoogle = window.adsbygoogle || []).push({});</script></div></td></tr>
+<tr><td><a class="feedback" href="../feedback/feedback.html">Feedback</a></td>
+<td><!-- StatCounter visible -->
+<span class="unobtrusive">You are visitor number</span><br>
+<script type="text/javascript">
+var sc_project=9857407;
+var sc_invisible=0;
+var sc_security="dcc1ed0f";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="website statistics" href="http://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/9857407/0/dcc1ed0f/0/"
+alt="website statistics"></a></div></noscript></td></tr>
+<tr><td colspan="3"><iframe src="foot/interfacevsabstract.htm" class="foot"></iframe></td></tr></tbody></table>
+<!-- Google Adsense ad invisible -->
+<script type="text/javascript" async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Google translate invis -->
+<script type="text/javascript">
+function googleTranslateElementInit()
+{new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');}
+</script>
+<script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- Pinterest invis -->
+<script type="text/javascript">
+!function(a,b,c){var d,e,f;d="PIN_"+~~((new Date).getTime()/864e5),a[d]?a[d]+=1:(a[d]=1,a.setTimeout(function(){e=b.getElementsByTagName("SCRIPT")[0],f=b.createElement("SCRIPT"),f.type="text/javascript",f.async=!0,f.src=c.mainUrl+"?"+Math.random(),e.parentNode.insertBefore(f,e)},10))}(window,document,{mainUrl:"//assets.pinterest.com/js/pinit_main.js"});
+</script>
+<!-- Google +1 invis -->
+<script type="text/javascript" src="https://apis.google.com/js/platform.js" async defer></script></body></html>
+<!-- /generated by Foot -->
