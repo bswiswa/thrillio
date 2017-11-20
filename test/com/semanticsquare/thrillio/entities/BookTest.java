@@ -30,19 +30,19 @@ class BookTest {
 		assertFalse("\"porn\" in publisher, should return false", book.isKidFriendlyEligible());
 		// Test 3: "porn" in genre -- false
 		book = BookmarkManager.getInstance().createBook(4000, "Walden", "-", 1854, "Wilder Publications",
-				new String[] { "Henry David Thoreau" }, "porn", 4.3);
+				new String[] { "Henry David Thoreau" }, BookGenre.PORN, 4.3);
 		assertFalse("\"porn\" in genre, should return false", book.isKidFriendlyEligible());
 		// Test 4: "adult" in genre -- false
 		book = BookmarkManager.getInstance().createBook(4000, "Walden", "-", 1854, "Wilder Publications",
-				new String[] { "Henry David Thoreau" }, "Adult", 4.3);
+				new String[] { "Henry David Thoreau" }, BookGenre.ADULT, 4.3);
 		assertFalse("\"adult\" in genre, should return false", book.isKidFriendlyEligible());
 		// Test 4: "philosophy" in genre -- false
 		book = BookmarkManager.getInstance().createBook(4000, "Walden", "-", 1854, "Wilder Publications",
-				new String[] { "Henry David Thoreau" }, "Philosophy", 4.3);
+				new String[] { "Henry David Thoreau" }, BookGenre.PHILOSOPHY, 4.3);
 		assertFalse("\"Philosophy\" in genre, should return false", book.isKidFriendlyEligible());
 		// Test 4: "Self help" in genre -- false
 		book = BookmarkManager.getInstance().createBook(4000, "Walden", "-", 1854, "Wilder Publications",
-				new String[] { "Henry David Thoreau" }, "Self help", 4.3);
+				new String[] { "Henry David Thoreau" }, BookGenre.SELF_HELP, 4.3);
 		assertFalse("\"self help\" in genre, should return false", book.isKidFriendlyEligible());
 	}
 

@@ -1,110 +1,570 @@
-<html><head><META http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>Apache Tomcat 6.0 (6.0.53) - Virtual Hosting and Tomcat</title><style type="text/css" media="print">
-			.noPrint {display: none;}
-			td#mainBody {width: 100%;}
-		</style></head><body bgcolor="#ffffff" text="#000000" link="#525D76" alink="#525D76" vlink="#525D76"><table border="0" width="100%" cellspacing="0"><!--PAGE HEADER--><tr><td><!--PROJECT LOGO--><a href="http://tomcat.apache.org/"><img src="./images/tomcat.gif" align="right" alt="
-      The Apache Tomcat Servlet/JSP Container
-    " border="0"></a></td><td><h1><font face="arial,helvetica,sanserif">Apache Tomcat 6.0</font></h1><font face="arial,helvetica,sanserif">Version 6.0.53, Apr 2 2017</font></td><td><!--APACHE LOGO--><a href="http://www.apache.org/"><img src="./images/asf-logo.svg" align="right" alt="Apache Logo" border="0" style="width: 266px;height: 83px;"></a></td></tr></table><table border="0" width="100%" cellspacing="4"><!--HEADER SEPARATOR--><tr><td colspan="2"><hr noshade="noshade" size="1"></td></tr><tr><!--LEFT SIDE NAVIGATION--><td width="20%" valign="top" nowrap="nowrap" class="noPrint"><p><strong>Links</strong></p><ul><li><a href="index.html">Docs Home</a></li><li><a href="http://wiki.apache.org/tomcat/FAQ">FAQ</a></li></ul><p><strong>User Guide</strong></p><ul><li><a href="introduction.html">1) Introduction</a></li><li><a href="setup.html">2) Setup</a></li><li><a href="appdev/index.html">3) First webapp</a></li><li><a href="deployer-howto.html">4) Deployer</a></li><li><a href="manager-howto.html">5) Manager</a></li><li><a href="realm-howto.html">6) Realms and AAA</a></li><li><a href="security-manager-howto.html">7) Security Manager</a></li><li><a href="jndi-resources-howto.html">8) JNDI Resources</a></li><li><a href="jndi-datasource-examples-howto.html">9) JDBC DataSources</a></li><li><a href="class-loader-howto.html">10) Classloading</a></li><li><a href="jasper-howto.html">11) JSPs</a></li><li><a href="ssl-howto.html">12) SSL</a></li><li><a href="ssi-howto.html">13) SSI</a></li><li><a href="cgi-howto.html">14) CGI</a></li><li><a href="proxy-howto.html">15) Proxy Support</a></li><li><a href="mbeans-descriptor-howto.html">16) MBean Descriptor</a></li><li><a href="default-servlet.html">17) Default Servlet</a></li><li><a href="cluster-howto.html">18) Clustering</a></li><li><a href="balancer-howto.html">19) Load Balancer</a></li><li><a href="connectors.html">20) Connectors</a></li><li><a href="monitoring.html">21) Monitoring and Management</a></li><li><a href="logging.html">22) Logging</a></li><li><a href="apr.html">23) APR/Native</a></li><li><a href="virtual-hosting-howto.html">24) Virtual Hosting</a></li><li><a href="aio.html">25) Advanced IO</a></li><li><a href="extras.html">26) Additional Components</a></li><li><a href="maven-jars.html">27) Mavenized</a></li></ul><p><strong>Reference</strong></p><ul><li><a href="RELEASE-NOTES.txt">Release Notes</a></li><li><a href="config/index.html">Configuration</a></li><li><a href="api/index.html">Javadocs</a></li><li><a href="http://tomcat.apache.org/connectors-doc/">JK 1.2 Documentation</a></li></ul><p><strong>Apache Tomcat Development</strong></p><ul><li><a href="building.html">Building</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="http://wiki.apache.org/tomcat/TomcatVersions">Status</a></li><li><a href="developers.html">Developers</a></li><li><a href="architecture/index.html">Architecture</a></li><li><a href="funcspecs/index.html">Functional Specs.</a></li></ul></td><!--RIGHT SIDE MAIN BODY--><td width="80%" valign="top" align="left" id="mainBody"><h1>Apache Tomcat 6.0</h1><h2>Virtual Hosting and Tomcat</h2><table border="0" cellspacing="0" cellpadding="2"><tr><td bgcolor="#525D76"><font color="#ffffff" face="arial,helvetica.sanserif"><a name="Table of Contents"><!--()--></a><a name="Table_of_Contents"><strong>Table of Contents</strong></a></font></td></tr><tr><td><blockquote>
-<ul><li><a href="#Assumptions">Assumptions</a></li><li><a href="#server.xml">server.xml</a></li><li><a href="#Webapps_Directory">Webapps Directory</a></li><li><a href="#Configuring_Your_Contexts">Configuring Your Contexts</a><ol><li><a href="#General">General</a></li><li><a href="#context.xml_-_approach__1">context.xml - approach #1</a></li><li><a href="#context.xml_-_approach__2">context.xml - approach #2</a></li><li><a href="#Further_Information">Further Information</a></li></ol></li></ul>
-</blockquote></td></tr></table><table border="0" cellspacing="0" cellpadding="2"><tr><td bgcolor="#525D76"><font color="#ffffff" face="arial,helvetica.sanserif"><a name="Assumptions"><strong>Assumptions</strong></a></font></td></tr><tr><td><blockquote>
-    <p>
-      For the sake of this how-to, assume you have a development host with two
-      host names, <code>ren</code> and <code>stimpy</code>. Let's also assume
-      one instance of Tomcat running, so <code>$CATALINA_HOME</code> refers to
-      wherever it's installed, perhaps <code>/usr/local/tomcat</code>.
-    </p>
-    <p>
-      Also, this how-to uses Unix-style path separators and commands; if you're
-      on Windows modify accordingly. 
-    </p>
-  </blockquote></td></tr></table><table border="0" cellspacing="0" cellpadding="2"><tr><td bgcolor="#525D76"><font color="#ffffff" face="arial,helvetica.sanserif"><a name="server.xml"><strong>server.xml</strong></a></font></td></tr><tr><td><blockquote>
-    <p>
-      At the simplest, edit the <a href="config/engine.html">Engine</a> portion
-      of your <code>server.xml</code> file to look like this:
-    </p>
-    <div align="left"><table cellspacing="4" cellpadding="0" border="0"><tr><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr><tr><td bgcolor="#023264" width="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#ffffff" height="1"><pre>
-&lt;Engine name="Catalina" defaultHost="ren"&gt;
-    &lt;Host name="ren"    appBase="renapps"/&gt;
-    &lt;Host name="stimpy" appBase="stimpyapps"/&gt;
-&lt;/Engine&gt;
-    </pre></td><td bgcolor="#023264" width="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr><tr><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr></table></div>
-    <p>
-      Note that the directory structures under the appBase for each host should
-      not overlap each other.
-    </p>
-    <p>
-      Consult the configuration documentation for other attributes of the
-      <a href="config/engine.html">Engine</a> and <a href="config/host.html">
-      Host</a> elements.
-    </p>
-  </blockquote></td></tr></table><table border="0" cellspacing="0" cellpadding="2"><tr><td bgcolor="#525D76"><font color="#ffffff" face="arial,helvetica.sanserif"><a name="Webapps Directory"><!--()--></a><a name="Webapps_Directory"><strong>Webapps Directory</strong></a></font></td></tr><tr><td><blockquote>
-    <p>
-      Create directories for each of the virtual hosts:
-    </p>
-    <div align="left"><table cellspacing="4" cellpadding="0" border="0"><tr><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr><tr><td bgcolor="#023264" width="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#ffffff" height="1"><pre>
-mkdir $CATALINA_HOME/renapps
-mkdir $CATALINA_HOME/stimpyapps
-    </pre></td><td bgcolor="#023264" width="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr><tr><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr></table></div>
-  </blockquote></td></tr></table><table border="0" cellspacing="0" cellpadding="2"><tr><td bgcolor="#525D76"><font color="#ffffff" face="arial,helvetica.sanserif"><a name="Configuring Your Contexts"><!--()--></a><a name="Configuring_Your_Contexts"><strong>Configuring Your Contexts</strong></a></font></td></tr><tr><td><blockquote>
-    <table border="0" cellspacing="0" cellpadding="2"><tr><td bgcolor="#828DA6"><font color="#ffffff" face="arial,helvetica.sanserif"><a name="General"><strong>General</strong></a></font></td></tr><tr><td><blockquote>
-      <p>Contexts are normally located underneath the appBase directory. For
-       example, to deploy the <code>foobar</code> context as a war file in
-       the <code>ren</code> host, use
-       <code>$CATALINA_HOME/renapps/foobar.war</code>. Note that the
-       default or ROOT context for <code>ren</code> would be deployed as
-       <code>$CATALINA_HOME/renapps/ROOT.war</code> (WAR) or
-       <code>$CATALINA_HOME/renapps/ROOT</code> (directory).
-      </p>
-      <p><strong>NOTE: The <code>docBase</code> for a context should never be
-        the same as the <code>appBase</code> for a host.</strong>
-      </p>
-    </blockquote></td></tr></table>
-    <table border="0" cellspacing="0" cellpadding="2"><tr><td bgcolor="#828DA6"><font color="#ffffff" face="arial,helvetica.sanserif"><a name="context.xml - approach #1"><!--()--></a><a name="context.xml_-_approach__1"><strong>context.xml - approach #1</strong></a></font></td></tr><tr><td><blockquote>
-      <p>
-        Within your Context, create a <code>META-INF</code> directory and then
-        place your Context definition in it in a file named
-        <code>context.xml</code>. i.e.
-        <code>$CATALINA_HOME/renapps/ROOT/META-INF/context.xml</code>
-        This makes deployment easier, particularly if you're distributing a WAR
-        file.
-      </p>
-    </blockquote></td></tr></table>
-    <table border="0" cellspacing="0" cellpadding="2"><tr><td bgcolor="#828DA6"><font color="#ffffff" face="arial,helvetica.sanserif"><a name="context.xml - approach #2"><!--()--></a><a name="context.xml_-_approach__2"><strong>context.xml - approach #2</strong></a></font></td></tr><tr><td><blockquote>
-      <p>
-        Create a structure under <code>$CATALINA_HOME/conf/Catalina</code>
-        corresponding to your virtual hosts, e.g.:
-      </p>
-      <div align="left"><table cellspacing="4" cellpadding="0" border="0"><tr><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr><tr><td bgcolor="#023264" width="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#ffffff" height="1"><pre>
-mkdir $CATALINA_HOME/conf/Catalina/ren
-mkdir $CATALINA_HOME/conf/Catalina/stimpy
-      </pre></td><td bgcolor="#023264" width="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr><tr><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr></table></div>
-      <p>
-        Note that the ending directory name "Catalina" represents the
-        <code>name</code> attribute of the
-        <a href="config/engine.html">Engine</a> element as shown above.
-      </p>
-      <p>
-        Now, for your default webapps, add:
-      </p>
-      <div align="left"><table cellspacing="4" cellpadding="0" border="0"><tr><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr><tr><td bgcolor="#023264" width="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#ffffff" height="1"><pre>
-$CATALINA_HOME/conf/Catalina/ren/ROOT.xml
-$CATALINA_HOME/conf/Catalina/stimpy/ROOT.xml
-      </pre></td><td bgcolor="#023264" width="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr><tr><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr></table></div>
-      <p>
-        If you want to use the Tomcat manager webapp for each host, you'll also
-        need to add it here:
-      </p>
-      <div align="left"><table cellspacing="4" cellpadding="0" border="0"><tr><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr><tr><td bgcolor="#023264" width="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#ffffff" height="1"><pre>
-cd $CATALINA_HOME/conf/Catalina
-cp localhost/manager.xml ren/
-cp localhost/manager.xml stimpy/
-      </pre></td><td bgcolor="#023264" width="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr><tr><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td><td bgcolor="#023264" width="1" height="1"><img src="./images/void.gif" alt="" width="1" height="1" vspace="0" hspace="0" border="0"></td></tr></table></div>
-    </blockquote></td></tr></table>
-    <table border="0" cellspacing="0" cellpadding="2"><tr><td bgcolor="#828DA6"><font color="#ffffff" face="arial,helvetica.sanserif"><a name="Further Information"><!--()--></a><a name="Further_Information"><strong>Further Information</strong></a></font></td></tr><tr><td><blockquote>
-      <p>
-        Consult the configuration documentation for other attributes of the
-        <a href="config/context.html">Context</a> element.
-      </p>
-    </blockquote></td></tr></table>
-  </blockquote></td></tr></table></td></tr><!--FOOTER SEPARATOR--><tr><td colspan="2"><hr noshade="noshade" size="1"></td></tr><!--PAGE FOOTER--><tr><td colspan="2"><div align="center"><font color="#525D76" size="-1"><em>
-        Copyright &copy; 1999-2017, Apache Software Foundation
-        </em></font></div></td></tr></table></body></html>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="stylesheets/tomcat.css" rel="stylesheet" type="text/css">
+<title>Apache Tomcat&reg; - Welcome!</title>
+<meta name="author" content="Apache Tomcat Project">
+<meta name="google-site-verification" content="nA9F0GvGNjVCU9W7HBziONQVx6FehvgQglI1X7WPfRw">
+</head>
+<body>
+<div id="wrapper">
+<header>
+<div id="header">
+<div>
+<div>
+<div class="logo noPrint">
+<a href="http://tomcat.apache.org/"><img alt="Tomcat Home" src="./images/tomcat.png"></a>
+</div>
+<div style="height: 1px;"></div>
+<div class="asfLogo noPrint">
+<a href="https://www.apache.org/foundation/contributing.html" target="_blank"><img src="https://www.apache.org/images/SupportApache-small.png" alt="Support Apache" style="height: 83px; margin-right: 15px;"></a><a href="http://www.apache.org/" target="_blank"><img src="./images/asf_logo.svg" alt="The Apache Software Foundation" style="width: 205px; height: 83px; margin-right: 15px;"></a>
+</div>
+<h1 style="margin-top: 35px;">Apache Tomcat<sup>&reg;</sup>
+</h1>
+<div style="clear: right;"></div>
+<div class="searchbox noPrint">
+<form action="https://www.google.com/search" method="get">
+<input value="tomcat.apache.org" name="sitesearch" type="hidden"><input placeholder="Search the Site&hellip;" required="required" size="25" name="q" id="query" type="search"><button>Search</button>
+</form>
+</div>
+<div style="height: 1px;"></div>
+<div style="clear: left;"></div>
+</div>
+</div>
+</div>
+</header>
+<div id="middle">
+<div>
+<div id="mainLeft" class="noprint">
+<div>
+<nav>
+<div>
+<h2>Apache Tomcat</h2>
+<ul>
+<li>
+<a href="./index.html">Home</a>
+</li>
+<li>
+<a href="./taglibs.html">Taglibs</a>
+</li>
+<li>
+<a href="./maven-plugin.html">Maven Plugin</a>
+</li>
+</ul>
+</div>
+<div>
+<h2>Download</h2>
+<ul>
+<li>
+<a href="./whichversion.html">Which version?</a>
+</li>
+<li>
+<a href="https://tomcat.apache.org/download-90.cgi">Tomcat 9</a>
+</li>
+<li>
+<a href="https://tomcat.apache.org/download-80.cgi">Tomcat 8</a>
+</li>
+<li>
+<a href="https://tomcat.apache.org/download-70.cgi">Tomcat 7</a>
+</li>
+<li>
+<a href="https://tomcat.apache.org/download-connectors.cgi">Tomcat Connectors</a>
+</li>
+<li>
+<a href="https://tomcat.apache.org/download-native.cgi">Tomcat Native</a>
+</li>
+<li>
+<a href="https://tomcat.apache.org/download-taglibs.cgi">Taglibs</a>
+</li>
+<li>
+<a href="https://archive.apache.org/dist/tomcat/">Archives</a>
+</li>
+</ul>
+</div>
+<div>
+<h2>Documentation</h2>
+<ul>
+<li>
+<a href="./tomcat-9.0-doc/index.html">Tomcat 9.0</a>
+</li>
+<li>
+<a href="./tomcat-8.5-doc/index.html">Tomcat 8.5</a>
+</li>
+<li>
+<a href="./tomcat-8.0-doc/index.html">Tomcat 8.0</a>
+</li>
+<li>
+<a href="./tomcat-7.0-doc/index.html">Tomcat 7.0</a>
+</li>
+<li>
+<a href="./connectors-doc/">Tomcat Connectors</a>
+</li>
+<li>
+<a href="./native-doc/">Tomcat Native</a>
+</li>
+<li>
+<a href="https://wiki.apache.org/tomcat/FrontPage">Wiki</a>
+</li>
+<li>
+<a href="./migration.html">Migration Guide</a>
+</li>
+<li>
+<a href="./presentations.html">Presentations</a>
+</li>
+</ul>
+</div>
+<div>
+<h2>Problems?</h2>
+<ul>
+<li>
+<a href="./security.html">Security Reports</a>
+</li>
+<li>
+<a href="./findhelp.html">Find help</a>
+</li>
+<li>
+<a href="https://wiki.apache.org/tomcat/FAQ">FAQ</a>
+</li>
+<li>
+<a href="./lists.html">Mailing Lists</a>
+</li>
+<li>
+<a href="./bugreport.html">Bug Database</a>
+</li>
+<li>
+<a href="./irc.html">IRC</a>
+</li>
+</ul>
+</div>
+<div>
+<h2>Get Involved</h2>
+<ul>
+<li>
+<a href="./getinvolved.html">Overview</a>
+</li>
+<li>
+<a href="./svn.html">Source code</a>
+</li>
+<li>
+<a href="./ci.html">Buildbot</a>
+</li>
+<li>
+<a href="./tools.html">Tools</a>
+</li>
+</ul>
+</div>
+<div>
+<h2>Media</h2>
+<ul>
+<li>
+<a href="https://twitter.com/theapachetomcat">Twitter</a>
+</li>
+<li>
+<a href="https://www.youtube.com/c/ApacheTomcatOfficial">YouTube</a>
+</li>
+<li>
+<a href="https://blogs.apache.org/tomcat/">Blog</a>
+</li>
+</ul>
+</div>
+<div>
+<h2>Misc</h2>
+<ul>
+<li>
+<a href="./whoweare.html">Who We Are</a>
+</li>
+<li>
+<a href="./heritage.html">Heritage</a>
+</li>
+<li>
+<a href="http://www.apache.org">Apache Home</a>
+</li>
+<li>
+<a href="./resources.html">Resources</a>
+</li>
+<li>
+<a href="./contact.html">Contact</a>
+</li>
+<li>
+<a href="./legal.html">Legal</a>
+</li>
+<li>
+<a href="https://www.apache.org/foundation/contributing.html">Support Apache</a>
+</li>
+<li>
+<a href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+</li>
+<li>
+<a href="http://www.apache.org/foundation/thanks.html">Thanks</a>
+</li>
+</ul>
+</div>
+</nav>
+</div>
+</div>
+<div id="mainRight">
+<div id="content">
+<h2 style="display: none;">Content</h2>
+<h3 id="Apache_Tomcat">Apache Tomcat</h3>
+<div class="text">
+
+
+<p>The Apache Tomcat<sup>&reg;</sup> software is an open source implementation
+of the Java Servlet, JavaServer Pages, Java Expression Language and Java
+WebSocket technologies. The Java Servlet, JavaServer Pages, Java Expression
+Language and Java WebSocket specifications are developed under the
+<a href="http://jcp.org/en/introduction/overview" rel="nofollow">Java Community
+Process</a>.
+</p>
+
+
+<p>The Apache Tomcat software is developed in an open and participatory
+environment and released under the
+<a href="http://www.apache.org/licenses/">Apache License version 2</a>. The
+Apache Tomcat project is intended to be a collaboration of the best-of-breed
+developers from around the world.  We invite you to participate in this open
+development project.  To learn more about getting involved,
+<a href="getinvolved.html">click here</a>.</p>
+
+
+<p>Apache Tomcat software powers numerous large-scale, mission-critical web
+applications across a diverse range of industries and organizations.  Some of
+these users and their stories are listed on the
+<a href="https://wiki.apache.org/tomcat/PoweredBy">PoweredBy</a> wiki page.</p>
+
+
+<p>Apache Tomcat, Tomcat, Apache, the Apache feather, and the Apache Tomcat
+project logo are trademarks of the Apache Software Foundation.</p>
+
+
+</div>
+<h3 id="Tomcat_7.0.82_Released">
+<span style="float: right;">2017-10-03</span> Tomcat 7.0.82 Released</h3>
+<div class="text">
+
+<p>
+The Apache Tomcat Project is proud to announce the release of version 7.0.82 of
+Apache Tomcat. This release contains a number of bug fixes and improvements
+compared to version 7.0.81. The notable changes compared to 7.0.81 include:
+</p>
+
+<ul>
+
+<li>A fix for CVE-2017-12617.</li>
+
+<li>Update the packaged version of the Tomcat Native Library to 1.2.14 to pick
+    up the latest Windows binaries built with APR 1.6.2 and OpenSSL 1.0.2l.</li>
+
+</ul>
+
+
+<p>
+Full details of these changes, and all the other changes, are available in the
+<a href="tomcat-7.0-doc/changelog.html#Tomcat_7.0.82_(violetagg)">Tomcat 7 changelog</a>.
+</p>
+
+
+<p style="text-align: center;">
+
+<a href="https://tomcat.apache.org/download-70.cgi">Download</a>
+
+</p>
+
+</div>
+<h3 id="Tomcat_8.0.47_Released">
+<span style="float: right;">2017-10-03</span> Tomcat 8.0.47 Released</h3>
+<div class="text">
+
+<p>
+The Apache Tomcat Project is proud to announce the release of version 8.0.47
+of Apache Tomcat. Apache Tomcat 8.0.47 includes fixes for issues identified in
+8.0.46 as well as other enhancements and changes. The notable changes
+compared to 8.0.46 include:</p>
+
+<ul>
+
+<li>A fix for CVE-2017-12617.</li>
+
+<li>Add ExtractingRoot, a new WebResourceRoot implementation that extracts JARs
+    to the work directory for improved performance when deploying packed WAR
+    files.</li>
+
+<li>Update the packaged version of the Tomcat Native Library to 1.2.14 to pick
+    up the latest Windows binaries built with APR 1.6.2 and OpenSSL 1.0.2l.</li>
+
+</ul>
+
+
+<p>
+Full details of these changes, and all the other changes, are available in the
+<a href="tomcat-8.0-doc/changelog.html#Tomcat_8.0.47_(violetagg)">Tomcat 8
+changelog</a>.
+</p>
+
+
+<p>
+<strong>Note:</strong> End of life date for Apache Tomcat 8.0.x is announced.
+<a href="tomcat-80-eol.html">Read more...</a>
+
+</p>
+
+
+<p style="text-align: center;">
+
+<a href="https://tomcat.apache.org/download-80.cgi">Download</a>
+
+</p>
+
+</div>
+<h3 id="Tomcat_8.5.23_Released">
+<span style="float: right;">2017-10-01</span> Tomcat 8.5.23 Released</h3>
+<div class="text">
+
+<p>
+The Apache Tomcat Project is proud to announce the release of version 8.5.23
+of Apache Tomcat. Apache Tomcat 8.5.x is intended to replace 8.0.x and includes
+new features pulled forward from Tomcat 9.0.x. The minimum Java version and
+implemented specification versions remain unchanged. The notable changes
+compared to 8.5.20 include:</p>
+
+<ul>
+
+<li>A fix for CVE-2017-12617.</li>
+
+<li>Stricter validation of the HTTP Host header.</li>
+
+<li>Add ExtractingRoot, a new WebResourceRoot implementation that extracts JARs
+    to the work directory for improved performance when deploying packed WAR
+    files.</li>
+
+<li>Added support for the OpenSSL SSL_CONF API. To support this the
+    minimum required Tomcat Native version is 1.2.14.</li>
+
+</ul>
+
+
+<p>
+Full details of these changes, and all the other changes, are available in the
+<a href="tomcat-8.5-doc/changelog.html#Tomcat_8.5.20_(markt)">Tomcat 8.5
+changelog</a>.
+</p>
+
+
+<p style="text-align: center;">
+
+<a href="https://tomcat.apache.org/download-80.cgi">Download</a>
+
+</p>
+
+</div>
+<h3 id="Tomcat_9.0.1_(beta)_Released">
+<span style="float: right;">2017-09-30</span> Tomcat 9.0.1 (beta) Released</h3>
+<div class="text">
+
+<p>
+The Apache Tomcat Project is proud to announce the release of version 9.0.1
+(beta) of Apache Tomcat. The notable changes compared to 9.0.0.M26 include:</p>
+
+<ul>
+
+<li>This is the first release after the publication of the Servlet 4.0
+    specification and fully implements the new specification.</li>
+
+<li>A fix for CVE-2017-12617.</li>
+
+<li>The ability to update the TLS configuration without restarting
+    Tomcat or the TLS connector.</li>
+
+<li>Stricter validation of the HTTP Host header.</li>
+
+</ul>
+
+
+<p>
+Full details of these changes, and all the other changes, are available in the
+<a href="tomcat-9.0-doc/changelog.html#Tomcat_9.0.1_(markt)">Tomcat 9
+changelog</a>.
+</p>
+
+
+<p style="text-align: center;">
+
+<a href="https://tomcat.apache.org/download-90.cgi">Download</a>
+
+</p>
+
+</div>
+<h3 id="Tomcat_Connectors_1.2.42_Released">
+<span style="float: right;">2016-10-05</span> Tomcat Connectors 1.2.42 Released</h3>
+<div class="text">
+
+<p>
+The Apache Tomcat Project is proud to announce the release of version 1.2.42 of
+Apache Tomcat Connectors.
+This version fixes a number of bugs found in previous releases.
+</p>
+
+<p style="text-align: center;">
+
+<a href="https://tomcat.apache.org/download-connectors.cgi">Download</a> |
+<a href="connectors-doc/miscellaneous/changelog.html">ChangeLog for 1.2.42</a>
+
+</p>
+
+</div>
+<h3 id="Tomcat_Native_1.2.14_Released">
+<span style="float: right;">2017-09-04</span> Tomcat Native 1.2.14 Released</h3>
+<div class="text">
+
+<p>
+The Apache Tomcat Project is proud to announce the release of version 1.2.14 of
+Tomcat Native. The notable changes since 1.2.12 include:
+</p>
+
+<ul>
+  
+<li>Windows binaries built with APR 1.6.2 and OpenSSL 1.0.2l.</li>
+  
+<li>Support for the <code>SSL_CONF_cmd</code> API.</li>
+  
+<li>Support for specifying trusted certificates in raw form.</li>
+
+</ul>
+
+<p>Note that users should now be using 1.2.x in preference to 1.1.x.</p>
+
+<p style="text-align: center;">
+
+<a href="https://tomcat.apache.org/download-native.cgi">Download</a> |
+<a href="native-doc/miscellaneous/changelog.html">ChangeLog for 1.2.14</a>
+
+</p>
+
+</div>
+<h3 id="Tomcat_Native_1.1.34_Released">
+<span style="float: right;">2015-12-15</span> Tomcat Native 1.1.34 Released</h3>
+<div class="text">
+
+<p>
+The Apache Tomcat Project is proud to announce the release of version 1.1.34 of
+Tomcat Native. The notable changes since 1.1.33 include:
+</p>
+
+<ul>
+  
+<li>Unconditionally disable export Ciphers</li>
+  
+<li>Improve ephemeral key handling for DH and ECDH</li>
+  
+<li>Various fixes to build with newer OpenSSL versions</li>
+
+</ul>
+
+<p>Note that, unless a regression is discovered in 1.2.x, users should now be
+using 1.2.x in preference to 1.1.x.</p>
+
+<p style="text-align: center;">
+
+<a href="https://tomcat.apache.org/download-native.cgi">Download</a> |
+<a href="native-1.1-doc/miscellaneous/changelog.html">ChangeLog for 1.1.34</a>
+
+</p>
+
+</div>
+<h3 id="Apache_Standard_Taglib_1.2.5_Released">
+<span style="float: right;">2015-03-17</span> Apache Standard Taglib 1.2.5 Released</h3>
+<div class="text">
+
+<p>
+The Apache Tomcat Project is proud to announce the release of version 1.2.5 of
+the Standard Taglib. This tag library provides Apache's implementation 
+of the JSTL 1.2 specification.
+</p>
+
+<p>
+Version 1.2.5 is a minor bug fix release reverting a change made in 1.2.1 where
+&lt;c:import&gt; modified the HTTP method during POST operations, and fixing an
+issues that resulted in an AccessControlException during startup unless
+permission was granted to read the accessExternalEntity property.
+</p>
+
+<p>
+Please see the <a href="taglibs.html">Taglibs section</a> for more details.
+</p>
+
+<p style="text-align: center;">
+
+<a href="https://tomcat.apache.org/download-taglibs.cgi">Download</a> |
+<a href="taglibs/CHANGES.txt">Changes</a>
+
+</p>
+
+</div>
+<h3 id="Tomcat_Maven_Plugin_2.2_Released">
+<span style="float: right;">2013-11-11</span> Tomcat Maven Plugin 2.2 Released</h3>
+<div class="text">
+
+<p>
+The Apache Tomcat team is pleased to announce the release of Tomcat Maven Plugin 2.2.
+Changelog available <a href="maven-plugin-2.2/jira-report.html" target="_blank">here</a>.
+</p>
+
+<p>
+The <a href="maven-plugin.html">Apache Tomcat Maven Plugin</a> provides goals
+to manipulate WAR projects within the Apache Tomcat servlet container.
+</p>
+
+<p>
+The binaries are available from Maven repositories. You should specify the
+version in your project's plugin configuration:
+</p>
+
+<div class="codeBox">
+<pre>
+<code>&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt;
+  &lt;artifactId&gt;tomcat7-maven-plugin&lt;/artifactId&gt;
+  &lt;version&gt;2.2&lt;/version&gt;
+&lt;/plugin&gt;</code>
+</pre>
+</div>
+
+<p>or</p>
+
+<div class="codeBox">
+<pre>
+<code>&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt;
+  &lt;artifactId&gt;tomcat6-maven-plugin&lt;/artifactId&gt;
+  &lt;version&gt;2.2&lt;/version&gt;
+&lt;/plugin&gt;</code>
+</pre>
+</div>
+
+</div>
+<h3 id="Old_news">Old news</h3>
+<div class="text">
+
+<p>
+  See <a href="oldnews.html"> former announcements.</a>
+
+</p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer>
+<div id="footer">
+    Copyright &copy; 1999-2017, The Apache Software Foundation
+    <br>
+    Apache Tomcat, Tomcat, Apache, the Apache feather, and the Apache Tomcat
+    project logo are either registered trademarks or trademarks of the Apache
+    Software Foundation.
+  </div>
+</footer>
+</div>
+</body>
+</html>

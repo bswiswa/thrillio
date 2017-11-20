@@ -4,14 +4,16 @@ import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.semanticsquare.thrillio.constants.BookGenre;
 import com.semanticsquare.thrillio.partner.Shareable;
 
 public class Book extends Bookmark implements Shareable {
 	private int publicationYear;
 	private String publisher;
 	private String[] authors;
-	private String genre;
+	private BookGenre genre;
 	private double amazonRating;
+	private static final long serialVersionUID = 559000082472491874L;
 
 	public int getPublicationYear() {
 		return publicationYear;
@@ -37,11 +39,11 @@ public class Book extends Bookmark implements Shareable {
 		this.authors = authors;
 	}
 
-	public String getGenre() {
+	public BookGenre getGenre() {
 		return genre;
 	}
 
-	public void setGenre(String genre) {
+	public void setGenre(BookGenre genre) {
 		this.genre = genre;
 	}
 
@@ -57,10 +59,10 @@ public class Book extends Bookmark implements Shareable {
 	public boolean isKidFriendlyEligible() {
 		if(this.getTitle().toLowerCase().contains("porn")) return false;
 		if(publisher.toLowerCase().contains("porn")) return false;
-		if(genre.toLowerCase().contains("porn")) return false;
-		if(genre.toLowerCase().contains("adult")) return false;
-		if(genre.toLowerCase().contains("philosophy")) return false;
-		if(genre.toLowerCase().contains("self help")) return false;
+		if(genre.toString().toLowerCase().contains("porn")) return false;
+		if(genre.toString().toLowerCase().contains("adult")) return false;
+		if(genre.toString().toLowerCase().contains("philosophy")) return false;
+		if(genre.toString().toLowerCase().contains("self help")) return false;
 		return true;
 	}
 

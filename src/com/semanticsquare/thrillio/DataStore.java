@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.semanticsquare.thrillio.constants.BookGenre;
 import com.semanticsquare.thrillio.constants.Gender;
 import com.semanticsquare.thrillio.entities.Bookmark;
 import com.semanticsquare.thrillio.entities.User;
 import com.semanticsquare.thrillio.entities.UserBookmark;
+import com.semanticsquare.thrillio.managers.BookmarkManager;
 import com.semanticsquare.thrillio.managers.UserManager;
 import com.semanticsquare.thrillio.util.IOUtil;
 
@@ -65,9 +67,21 @@ public class DataStore {
 
 	private static void loadWebLinks() {
 		List<Bookmark> data = new ArrayList<>();
-		Bookmark[] weblinks = (Bookmark[]) IOUtil.deserialize("weblinks.ser");
-		for (Bookmark weblink : weblinks) {
-			data.add(weblink);
+//		Bookmark[] weblinks = (Bookmark[]) IOUtil.deserialize("weblinks.ser");
+//		for (Bookmark weblink : weblinks) {
+//			data.add(weblink);
+//		}
+//		bookmarks.put(0, data);
+//		
+		//Bookmark[] books = (Bookmark[]) IOUtil.deserialize("books.ser");
+		
+//		createWebLink(long id, String title, String profileUrl, String url, String host)
+		List<String> str = new ArrayList<>();
+		IOUtil.read(str, "WebLink");
+		for (String line : str) {
+			String[] words = line.split("\t");
+			Bookmark b = BookmarkManager.getInstance().createWebLink(Long.parseLong(words[0]), words[1], words[2], words[3], words[4]);
+			data.add(b);
 		}
 		bookmarks.put(0, data);
 
@@ -86,9 +100,21 @@ public class DataStore {
 
 	private static void loadBooks() {
 		List<Bookmark> data = new ArrayList<>();
-		Bookmark[] books = (Bookmark[]) IOUtil.deserialize("books.ser");
-		for (Bookmark book : books) {
-			data.add(book);
+		//Bookmark[] books = (Bookmark[]) IOUtil.deserialize("books.ser");
+		List<String> str = new ArrayList<>();
+		IOUtil.read(str, "Book");
+		for (String line : str) {
+			String[] words = line.split("\t");
+			BookGenre[] genres = BookGenre.values();
+			BookGenre genre = BookGenre.ART;
+			for(BookGenre bg: genres) {
+				if(bg.toString().equals(words[5].trim().toUpperCase())){
+					genre = bg;
+					break;
+				}
+			}
+			Bookmark b = BookmarkManager.getInstance().createBook(Long.parseLong(words[0]), words[1], "-", Integer.parseInt(words[2]), words[3], words[4].split(","), genre, Double.parseDouble(words[6]));
+			data.add(b);
 		}
 		bookmarks.put(2, data);
 	}
