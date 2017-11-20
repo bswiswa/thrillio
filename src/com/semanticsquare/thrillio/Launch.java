@@ -47,10 +47,10 @@ public class Launch {
 
 	public static void main(String[] args) {
 		loadData();
-//		printBookmarkData();
+		printBookmarkData();
 		start();
 		//background jobs
-		runDownloaderJob();
+		//runDownloaderJob();
 	}
 
 	private static void runDownloaderJob() {

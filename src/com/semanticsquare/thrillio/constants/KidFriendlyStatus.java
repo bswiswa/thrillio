@@ -1,8 +1,12 @@
 package com.semanticsquare.thrillio.constants;
 
-public class KidFriendlyStatus {
-	private KidFriendlyStatus() {}
-	public static final String UNKNOWN = "unknown";
-	public static final String APPROVED = "approved";
-	public static final String REJECTED = "rejected";
+public enum KidFriendlyStatus {
+	UNKNOWN("unknown"),
+	APPROVED("approved"),
+	REJECTED("rejected");
+	
+	private String status;
+	private KidFriendlyStatus(String status) {
+		this.status = status;
+	}
 }

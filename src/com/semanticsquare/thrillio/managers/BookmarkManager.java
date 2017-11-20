@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.semanticsquare.thrillio.constants.BookGenre;
+import com.semanticsquare.thrillio.constants.KidFriendlyStatus;
+import com.semanticsquare.thrillio.constants.MovieGenre;
 import com.semanticsquare.thrillio.dao.BookmarkDao;
 import com.semanticsquare.thrillio.entities.Book;
 import com.semanticsquare.thrillio.entities.Bookmark;
@@ -25,7 +27,7 @@ public class BookmarkManager {
 	}
 
 	public Movie createMovie(long id, String title, String profileUrl, int releaseYear, String[] cast,
-			String[] directors, String genre, double imdbRating) {
+			String[] directors, MovieGenre genre, double imdbRating) {
 		Movie movie = new Movie();
 		movie.setId(id);
 		movie.setTitle(title);
@@ -97,7 +99,7 @@ public class BookmarkManager {
 		dao.saveUserBookmark(userBookmark);
 	}
 
-	public void setKidFriendlyStatus(User user, String kidFriendlyChoice, Bookmark bookmark) {
+	public void setKidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyChoice, Bookmark bookmark) {
 		bookmark.setKidFriendlyStatus(kidFriendlyChoice);
 		bookmark.setKidFriendlyMarkedBy(user);
 		System.out.println("Kid friendly status: "+ kidFriendlyChoice + ", Marked by: "+ user.getEmail() + ", "+ bookmark);

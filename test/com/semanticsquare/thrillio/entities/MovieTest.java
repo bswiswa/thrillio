@@ -4,6 +4,7 @@ import static org.junit.Assert.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
+import com.semanticsquare.thrillio.constants.MovieGenre;
 import com.semanticsquare.thrillio.managers.BookmarkManager;
 
 class MovieTest {
@@ -14,11 +15,11 @@ class MovieTest {
 		Movie movie;
 		// Test 1: "horror" in genre -- false
 		movie = BookmarkManager.getInstance().createMovie(3000, "Citizen Kane", "-", 1941,
-				new String[] { "Orson Welles", "Joseph Cotten" }, new String[] { "Orson Welles" }, "Horror", 8.5);
+				new String[] { "Orson Welles", "Joseph Cotten" }, new String[] { "Orson Welles" }, MovieGenre.HORROR, 8.5);
 		assertFalse("\"horror\" in movie genre, should be false", movie.isKidFriendlyEligible());
 		// Test 2: "thriller" in genre
 		movie = BookmarkManager.getInstance().createMovie(3000, "Citizen Kane", "-", 1941,
-				new String[] { "Orson Welles", "Joseph Cotten" }, new String[] { "Orson Welles" }, "Thriller", 8.5);
+				new String[] { "Orson Welles", "Joseph Cotten" }, new String[] { "Orson Welles" }, MovieGenre.THRILLERS, 8.5);
 		assertFalse("\"thriller\" in movie genre, should be false", movie.isKidFriendlyEligible());
 
 	}

@@ -2,6 +2,8 @@ package com.semanticsquare.thrillio.managers;
 
 import java.util.List;
 
+import com.semanticsquare.thrillio.constants.Gender;
+import com.semanticsquare.thrillio.constants.UserType;
 import com.semanticsquare.thrillio.dao.UserDao;
 import com.semanticsquare.thrillio.entities.User;
 
@@ -22,8 +24,8 @@ public class UserManager {
 		return instance;
 	}
 
-	public User createUser(long id, String email, String password, String firstName, String lastName, int gender,
-			String userType) {
+	public User createUser(long id, String email, String password, String firstName, String lastName, Gender gender,
+			UserType userType) {
 		User user = new User();
 		user.setId(id);
 		user.setEmail(email);

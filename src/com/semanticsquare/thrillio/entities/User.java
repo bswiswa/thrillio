@@ -1,5 +1,8 @@
 package com.semanticsquare.thrillio.entities;
 
+import com.semanticsquare.thrillio.constants.Gender;
+import com.semanticsquare.thrillio.constants.UserType;
+
 public class User {
 	private long id;
 	// using a larger data type like long is good because in our database we may have millions of users
@@ -7,8 +10,8 @@ public class User {
 	private String password;
 	private String firstName;
 	private String lastName;
-	private int gender;
-	private String userType;
+	private Gender gender;
+	private UserType userType;
 	/* userType will differentiate between regular users or editors -> this is violating the recommendation
 		of using class hierarchies but it is fine in this case because we are creating this project as a web
 		application. There are not much differences between regular users and staff members
@@ -53,19 +56,19 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public int getGender() {
+	public Gender getGender() {
 		return gender;
 	}
 
-	public void setGender(int gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 
-	public String getUserType() {
+	public UserType getUserType() {
 		return userType;
 	}
 
-	public void setUserType(String userType) {
+	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
 	
