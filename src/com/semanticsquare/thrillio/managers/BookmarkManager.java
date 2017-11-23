@@ -102,6 +102,8 @@ public class BookmarkManager {
 	public void setKidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyChoice, Bookmark bookmark) {
 		bookmark.setKidFriendlyStatus(kidFriendlyChoice);
 		bookmark.setKidFriendlyMarkedBy(user);
+		
+		dao.updateKidFriendlyStatus(bookmark);
 		System.out.println("Kid friendly status: "+ kidFriendlyChoice + ", Marked by: "+ user.getEmail() + ", "+ bookmark);
 	}
 
@@ -111,6 +113,7 @@ public class BookmarkManager {
 //		we need to do downcasting so that we can use the proper getItemData() function
 //		If we do not downcast Bookmark, at compile time, the compiler will look for an implementation of the getItemData() method
 //		but since it does not exist in the Bookmark class, we will get an error
+		if(!(bookmark instanceof Movie)) dao.updateSharedBy(bookmark);
 		if(bookmark instanceof Book) {
 			System.out.println(((Book)bookmark).getItemData());	
 		}
